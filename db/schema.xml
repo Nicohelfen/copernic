@@ -68,9 +68,9 @@
 <row name="date_sale" null="1" autoincrement="0">
 <datatype>TINYINT</datatype>
 <default>NULL</default></row>
-<row name="status_id" null="1" autoincrement="0">
+<row name="id_level" null="1" autoincrement="0">
 <datatype>TINYINT</datatype>
-<default>NULL</default><relation table="status" row="id" />
+<default>NULL</default><relation table="level" row="id" />
 </row>
 <key type="PRIMARY" name="">
 <part>id</part>
@@ -135,7 +135,7 @@
 </key>
 <comment>Les contact fournisseur.  Voir si possibilité API pour connexion avec PO</comment>
 </table>
-<table x="345" y="162" name="company">
+<table x="247" y="60" name="company">
 <row name="id" null="1" autoincrement="1">
 <datatype>TINYINT</datatype>
 <default>NULL</default></row>
@@ -167,17 +167,17 @@
 </key>
 <comment>api pipe drive</comment>
 </table>
-<table x="336" y="401" name="status">
+<table x="186" y="384" name="level">
 <row name="id" null="1" autoincrement="1">
 <datatype>TINYINT</datatype>
 <default>NULL</default></row>
-<row name="compagny_id" null="1" autoincrement="0">
-<datatype>TINYINT</datatype>
-<default>NULL</default><relation table="company" row="id" />
-</row>
 <row name="name" null="1" autoincrement="0">
 <datatype>TINYINT</datatype>
 <default>NULL</default></row>
+<row name="id_company" null="1" autoincrement="0">
+<datatype>TINYINT</datatype>
+<default>NULL</default><relation table="company" row="id" />
+</row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
