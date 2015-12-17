@@ -4,6 +4,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  has_many :userpermits, dependent: :destroy
+  has_one :preference, dependent: :destroy
+
   ActiveAdmin.setup do |config|
   # [...]
   config.authentication_method = :authenticate_admin!
@@ -13,7 +16,7 @@ class User < ActiveRecord::Base
   config.logout_link_path = :destroy_user_session_path
   # [...]
   config.logout_link_method = :delete
-end
+  end
 
 
 end

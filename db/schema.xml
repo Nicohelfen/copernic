@@ -37,11 +37,11 @@
     <type label="SET" length="1" sql="SET" quote=""/>
     <type label="Bit" length="0" sql="bit" quote=""/>
   </group>
-</datatypes><table x="525" y="273" name="flow">
+</datatypes><table x="515" y="431" name="flow">
 <row name="id" null="1" autoincrement="1">
 <datatype>TINYINT</datatype>
 <default>NULL</default></row>
-<row name="id_counter" null="1" autoincrement="0">
+<row name="Counter" null="1" autoincrement="0">
 <datatype>TINYINT</datatype>
 <default>NULL</default><relation table="counter" row="id" />
 </row>
@@ -72,6 +72,9 @@
 <datatype>TINYINT</datatype>
 <default>NULL</default><relation table="level" row="id" />
 </row>
+<row name="number" null="1" autoincrement="0">
+<datatype>TINYINT</datatype>
+<default>NULL</default></row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
@@ -103,7 +106,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="659" y="19" name="user">
+<table x="618" y="96" name="user">
 <row name="id" null="1" autoincrement="1">
 <datatype>TINYINT</datatype>
 <default>NULL</default></row>
@@ -135,7 +138,7 @@
 </key>
 <comment>Les contact fournisseur.  Voir si possibilité API pour connexion avec PO</comment>
 </table>
-<table x="247" y="60" name="company">
+<table x="206" y="159" name="company">
 <row name="id" null="1" autoincrement="1">
 <datatype>TINYINT</datatype>
 <default>NULL</default></row>
@@ -182,7 +185,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="519" y="91" name="counter">
+<table x="492" y="215" name="counter">
 <row name="id" null="1" autoincrement="1">
 <datatype>TINYINT</datatype>
 <default>NULL</default></row>
@@ -240,6 +243,41 @@
 <row name="billing" null="1" autoincrement="0">
 <datatype>TINYINT</datatype>
 <default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="84" y="12" name="userpermit">
+<row name="id" null="1" autoincrement="1">
+<datatype>TINYINT</datatype>
+<default>NULL</default></row>
+<row name="id_company" null="1" autoincrement="0">
+<datatype>TINYINT</datatype>
+<default>NULL</default><relation table="company" row="id" />
+</row>
+<row name="id_user" null="1" autoincrement="0">
+<datatype>TINYINT</datatype>
+<default>NULL</default><relation table="user" row="id" />
+</row>
+<row name="priority" null="1" autoincrement="0">
+<datatype>TINYINT</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="452" y="8" name="preference">
+<row name="id" null="1" autoincrement="1">
+<datatype>TINYINT</datatype>
+<default>NULL</default></row>
+<row name="id_user" null="1" autoincrement="0">
+<datatype>TINYINT</datatype>
+<default>NULL</default><relation table="user" row="id" />
+</row>
+<row name="id_company" null="1" autoincrement="0">
+<datatype>TINYINT</datatype>
+<default>NULL</default><relation table="company" row="id" />
+</row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>

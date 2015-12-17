@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151204114449) do
+ActiveRecord::Schema.define(version: 20151214164153) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,7 +48,28 @@ ActiveRecord::Schema.define(version: 20151204114449) do
     t.integer  "number_char"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "compagny_id"
   end
+
+  add_index "counters", ["compagny_id"], name: "index_counters_on_compagny_id", using: :btree
+
+  create_table "flows", force: :cascade do |t|
+    t.integer  "compagny_id"
+    t.integer  "code"
+    t.string   "name"
+    t.text     "description"
+    t.integer  "deliverable"
+    t.date     "date_sale"
+    t.integer  "level_id"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.integer  "counter_id"
+    t.integer  "number",      default: 0
+  end
+
+  add_index "flows", ["compagny_id"], name: "index_flows_on_compagny_id", using: :btree
+  add_index "flows", ["counter_id"], name: "index_flows_on_counter_id", using: :btree
+  add_index "flows", ["level_id"], name: "index_flows_on_level_id", using: :btree
 
   create_table "levels", force: :cascade do |t|
     t.integer  "compagny_id"
@@ -58,6 +79,27 @@ ActiveRecord::Schema.define(version: 20151204114449) do
   end
 
   add_index "levels", ["compagny_id"], name: "index_levels_on_compagny_id", using: :btree
+
+  create_table "preferences", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "compagny_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "preferences", ["compagny_id"], name: "index_preferences_on_compagny_id", using: :btree
+  add_index "preferences", ["user_id"], name: "index_preferences_on_user_id", using: :btree
+
+  create_table "userpermits", force: :cascade do |t|
+    t.integer  "compagny_id"
+    t.integer  "user_id"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.boolean  "priority",    default: false
+  end
+
+  add_index "userpermits", ["compagny_id"], name: "index_userpermits_on_compagny_id", using: :btree
+  add_index "userpermits", ["user_id"], name: "index_userpermits_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",    null: false
@@ -78,5 +120,13 @@ ActiveRecord::Schema.define(version: 20151204114449) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "counters", "compagnies"
+  add_foreign_key "flows", "compagnies"
+  add_foreign_key "flows", "counters"
+  add_foreign_key "flows", "levels"
   add_foreign_key "levels", "compagnies"
+  add_foreign_key "preferences", "compagnies"
+  add_foreign_key "preferences", "users"
+  add_foreign_key "userpermits", "compagnies"
+  add_foreign_key "userpermits", "users"
 end

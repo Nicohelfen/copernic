@@ -1,0 +1,20 @@
+<h1>Edit Flow n° <%=@flow.id%></h1>
+
+
+<%= simple_form_for @flow, url:  flow_path(@flow) do |flow| %>
+
+  <%= flow.input :name %>
+  <%= flow.input :code %>
+  <%= flow.input :level,  collection: @levels, prompt: "Select your stage", include_blank: false %>
+  <%= flow.input :name, label: 'Title' %>
+  <%= flow.input :description %>
+  <%= flow.input :deliverable, label: 'Nb of deliverable' %>
+  <%= flow.input :date_sale %>
+  <%= flow.button :submit %>
+  <%= flow.button :button do %>
+    <%link_to "back", edit_flow_path(@flow) %>
+  <% end %>
+<% end %>
+
+<br>
+<br>
