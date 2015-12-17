@@ -1,0 +1,30 @@
+
+<div id="flow">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 text-center"><h2>New Flow</h2></div>
+    </div>
+    <div class="row form">
+      <div class="col-sm-12">
+       <%= simple_form_for @flow, url: flows_path do |f| %>
+       <%= f.input :counter_id %>
+       <%= f.input :compagny_id %>
+       <%= f.input :name %>
+       <%= f.input :description%>
+       <%= f.input :deliverable%>
+       <%= f.button :submit %>
+       <% end %>
+     </div>
+   </div>
+ </div>
+</div>
+
+
+t.integer  "counter_id"
+#     t.integer  "compagny_id"
+#     t.integer  "code"
+#     t.string   "name"
+#     t.text     "description"
+#     t.integer  "deliverable"
+#     t.date     "date_sale"
+#     t.integer  "level_id"
