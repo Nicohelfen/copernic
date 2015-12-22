@@ -1,0 +1,55 @@
+
+<div id="flows">
+  <div id="space-navbar"></div>
+  <div>
+
+    <%= link_to new_compagny_account_flow_path() do %>
+
+     Add Flow for <%= Compagny.find(params[:compagny_id].to_i).name.upcase %>
+    <% end %>
+
+  </div>
+  <div class="row row-centered">
+
+
+
+    <div class="col-sm-12 col-md-9   col-centered col-fixed">
+    <br/>
+    <table style="width:100%">
+     <tr >
+      <th>Code</th>
+      <th>Name</th>
+      <th>Level</th>
+      <th>Sale Date</th>
+      <th>Deliverable</th>
+    </tr>
+      <% @flows.each do |flow| %>
+      <%= link_to compagny_account_flow_path(params[:compagny_id], flow) do %>
+      <td><%= flow.code %></td>
+      <td><%= flow.name %></td>
+      <% if flow.level != nil %>
+        <td><%= flow.level.name %></td>
+      <%else%>
+        <td>No Level </td>
+      <%end%>
+      <%if flow.date_sale != nil %>
+        <td><%= flow.date_sale.strftime('%d.%m.%Y')%></td>
+      <%else%>
+        <td>No Date </td>
+      <%end%>
+      <td><%= flow.deliverable %></td>
+      <td> <%= link_to edit_compagny_account_flow_path(params[:compagny_id], flow) do %>
+        <button type="button" class="btn btn-primary">Edit</button>
+      <% end %></td>
+      <td> <%= link_to compagny_account_flow_path(params[:compagny_id], flow) do %>
+        <button type="button" class="btn btn-primary">Show</button>
+      <% end %></td>
+    </tr>
+      <% end %>
+    <%end%>
+    </tr>
+    </table>
+    </div>
+  </div>
+</div>
+

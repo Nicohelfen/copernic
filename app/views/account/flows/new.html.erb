@@ -6,7 +6,7 @@
     </div>
     <div class="row form">
       <div class="col-sm-12">
-       <%= simple_form_for @flow, url: flows_path do |f| %>
+       <%= simple_form_for @flow, url: compagny_account_flows_path do |f| %>
        <%= f.input :level, collection: @levels, prompt: "Select your stage", include_blank: false %>
        <%= f.input :name, label: 'Title' %>
        <%= f.input :description%>
