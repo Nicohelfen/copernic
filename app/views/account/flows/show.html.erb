@@ -1,0 +1,41 @@
+
+<div id="flow">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 text-center"><h2>Flow n° <%= @flow.code %> for <%= ((Compagny.find(compagny_id = @flow.compagny_id)).name).upcase  %> </h2></div>
+    </div>
+
+    <div class="row form">
+      <div class="col-sm-12">
+
+    <div class="col-sm-12 col-md-6 col-centered col-fixed">
+
+     <br />
+     <ul>
+      <ul>Code: <%= @flow.code %></ul>
+      <ul><%= @flow.name %></ul>
+     <% if @flow.level != nil %>
+      <ul><%= @flow.level.name %></ul>
+      <%end%>
+      <ul>Create: <%= @flow.created_at.strftime('%d.%m.%Y - %H:%M ')  %></ul>
+      <ul>Sales Date: <%= @flow.date_sale.strftime('%d.%m.%Y')  %></ul>
+      <ul>Deliverable: <%= @flow.deliverable %></ul>
+      <ul> <%= link_to compagny_account_flows_path(params[:compagny_id]) do %>
+        <button type="button" class="btn btn-primary">Back</button>
+        <% end %></ul>
+      </ul>
+
+
+      </ul>
+
+    </div>
+
+
+
+
+     </div>
+   </div>
+ </div>
+</div>
+
+

@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :userpermits, dependent: :destroy
-  has_one :preference, dependent: :destroy
+  has_many :compagnies, through: :userpermits
 
   ActiveAdmin.setup do |config|
   # [...]

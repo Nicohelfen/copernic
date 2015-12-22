@@ -1,5 +1,6 @@
 ActiveAdmin.register User do
 
+
   permit_params :email, :admin
 
   # sidebar "Compagny permit", only: [:show, :edit] do
