@@ -13,4 +13,15 @@ permit_params :name, :start, :actual, :number_char, :compagny_id
       actions
   end
 
+  form do |f|
+
+    inputs 'Details' do
+      input :compagny, input_html: { disabled: true }
+      input :name, input_html: { disabled: true }
+      input :start, input_html: { disabled: true }
+      input :actual
+      input :number_char, input_html: { disabled: true }
+    end
+  end
+
 end

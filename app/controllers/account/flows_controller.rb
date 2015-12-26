@@ -30,7 +30,9 @@ module Account
 
     def new
       # preference_user
-      @flow = Flow.new(code: Counter.find(counter_id = @counterselector).actual +=1, compagny_id: params[:compagny_id].to_i)
+      select_level
+      @flow = Flow.new(code: Counter.find(counter_id = @counterselector).actual +=1, compagny_id: params[:compagny_id].to_i, level_id:  @levels.first.id)
+
     end
 
     def create
@@ -100,7 +102,7 @@ module Account
 
     def select_level
       @counterselector = Counter.where(:name=> "Flow",:compagny_id=> params[:compagny_id].to_i).first
-      @levels = Level.where(:compagny_id=> @counterselector.compagny_id)
+      @levels = Level.where(:compagny_id=> params[:compagny_id]).sort_by {|s| s.sequence}
     end
 
     def traceflow
