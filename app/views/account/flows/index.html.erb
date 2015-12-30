@@ -10,11 +10,8 @@
 
   </div>
   <div class="row row-centered">
-
-
-
     <div class="col-sm-12 col-md-9   col-centered col-fixed">
-    <br/>
+    <h5> List of <%= @flows.count %> flows  </h5>
     <table style="width:100%">
      <tr >
       <th>Code</th>
@@ -23,33 +20,38 @@
       <th>Sale Date</th>
       <th>Deliverable</th>
     </tr>
+
+
+    <tr>
       <% @flows.each do |flow| %>
       <%= link_to compagny_account_flow_path(params[:compagny_id], flow) do %>
-      <td><%= flow.code %></td>
-      <td><%= flow.name %></td>
-      <% if flow.level != nil %>
-        <td><%= flow.level.name %></td>
-      <%else%>
-        <td>No Level </td>
-      <%end%>
-      <%if flow.date_sale != nil %>
-        <td><%= flow.date_sale.strftime('%d.%m.%Y')%></td>
-      <%else%>
-        <td>No Date </td>
-      <%end%>
-      <td><%= flow.deliverable %></td>
-      <td> <%= link_to edit_compagny_account_flow_path(params[:compagny_id], flow) do %>
-        <button type="button" class="btn btn-primary">Edit</button>
-      <% end %></td>
-      <td> <%= link_to compagny_account_flow_path(params[:compagny_id], flow) do %>
-        <button type="button" class="btn btn-primary">Show</button>
-      <% end %></td>
-    </tr>
-      <% end %>
+        <td><%= flow.code %></td>
+        <td><%= flow.name %></td>
+        <% if flow.level != nil %>
+          <td><%= flow.level.name %></td>
+        <%else%>
+          <td>No Level </td>
+        <%end%>
+        <%if flow.date_sale != nil %>
+          <td><%= flow.date_sale.strftime('%d.%m.%Y')%></td>
+        <%else%>
+          <td>No Date </td>
+        <%end%>
+        <td><%= flow.deliverable %></td>
+
+        <td> <%= link_to edit_compagny_account_flow_path(params[:compagny_id], flow) do %>
+          <button type="button" class="btn btn-primary">Edit</button>
+        <% end %></td>
+        <td> <%= link_to compagny_account_flow_path(params[:compagny_id], flow) do %>
+          <button type="button" class="btn btn-primary">Show</button>
+        <% end %></td>
+
+        <% end %>
+      <tr>
     <%end%>
-    </tr>
-    </table>
     </div>
+    </table>
+
   </div>
 </div>
 

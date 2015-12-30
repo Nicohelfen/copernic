@@ -10,6 +10,7 @@ module Account
 
     def index
       @flows = Flow.where(:compagny_id=> params[:compagny_id]).sort
+
     end
 
     def edit
@@ -19,9 +20,11 @@ module Account
     def update
       @flow = Flow.find(params[:id])
       set_whitelist_update
+
       if @flow.update(@whitelistupdate)
         flash[:notice] = "Your Flow has been updated"
         redirect_to  compagny_account_flows_path(params[:compagny_id].to_i)
+        traceflow
       else
         flash[:alert] = "Your Flow has not been updated? Please try again"
         render :edit
@@ -65,7 +68,9 @@ module Account
 
     def set_whitelist_update
       @whitelistupdate = params.require(:flow).permit(:name, :description, :deliverable, :date_sale)
+
       @whitelistupdate[:level_id] = params[:flow][:level].to_i
+
 
     end
 
@@ -112,8 +117,10 @@ module Account
       if @flow.updated_at == @flow.created_at
         @when = @flow.created_at
       else
-        @when = flow.updated_at
+        @when = @flow.updated_at
       end
     end
   end
+
+
 end

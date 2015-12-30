@@ -5,7 +5,6 @@ private
     #In NavBar Select a good compagny context
     if current_user
       @choisecompagny = User.find(current_user.id).compagnies
-
       if
         params[:compagny_id] == nil
         params[:compagny_id] = Userpermit.where(:user => current_user, :priority => true).first
@@ -17,9 +16,12 @@ private
         params[:compagny_id] = Userpermit.where(:user => current_user, :priority => true).first.compagny_id
         @choisecompagny = User.find(current_user.id).compagnies
           end
-
       end
       end
     end
+
+
+
+
 end
 
