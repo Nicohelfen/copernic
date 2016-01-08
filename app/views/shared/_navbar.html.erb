@@ -68,7 +68,7 @@
             <li><a href="#">Another action</a></li>
             <li><a href="#">Something else here</a></li>
             <li role="separator" class="divider"></li>
-            <li><%= link_to destroy_user_session_path, method: :delete do %>
+            <li><%= link_to destroy_user_session_path, method: :get do %>
                  <%= t ".sign_out", default: "Log out" %>
               <% end %>
           </ul>

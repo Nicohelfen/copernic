@@ -116,6 +116,15 @@
 <row name="picture" null="1" autoincrement="0">
 <datatype>TINYINT</datatype>
 <default>NULL</default></row>
+<row name="name" null="1" autoincrement="0">
+<datatype>TINYINT</datatype>
+<default>NULL</default></row>
+<row name="firstname" null="1" autoincrement="0">
+<datatype>TINYINT</datatype>
+<default>NULL</default></row>
+<row name="active" null="1" autoincrement="0">
+<datatype>TINYINT</datatype>
+<default>NULL</default></row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
