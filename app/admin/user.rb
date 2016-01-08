@@ -1,7 +1,7 @@
 ActiveAdmin.register User do
 
 
-  permit_params :email, :admin, :name, :firstname
+  permit_params :email, :admin, :name, :firstname, :active
 
   sidebar "User permit" do
     ul do

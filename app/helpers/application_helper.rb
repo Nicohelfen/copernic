@@ -20,11 +20,7 @@ private
       end
     end
 
-  def control_active
-    if current_user != nil
-raise
-    end
-  end
+
 
 
 
