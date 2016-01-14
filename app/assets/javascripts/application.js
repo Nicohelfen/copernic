@@ -15,4 +15,6 @@
 //= require bootstrap-sprockets
 //= require_tree
 //= require turbolinks
+//= require algolia/v3/algoliasearch.min
+
 

@@ -2,7 +2,9 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.2.4'
 
+
 gem 'activeadmin', github: 'activeadmin'
+gem "algoliasearch-rails"
 gem 'bootstrap-sass', '~> 3.3.1'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'devise', '~> 3.5.2'
