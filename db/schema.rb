@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160102172157) do
+ActiveRecord::Schema.define(version: 20160121142008) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -81,6 +81,15 @@ ActiveRecord::Schema.define(version: 20160102172157) do
   end
 
   add_index "levels", ["compagny_id"], name: "index_levels_on_compagny_id", using: :btree
+
+  create_table "organizations", force: :cascade do |t|
+    t.integer  "pipe_organization_id"
+    t.string   "name"
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.string   "update_time"
+    t.boolean  "active_flag",          default: false
+  end
 
   create_table "userpermits", force: :cascade do |t|
     t.integer  "compagny_id"

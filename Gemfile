@@ -9,6 +9,7 @@ gem 'bootstrap-sass', '~> 3.3.1'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'devise', '~> 3.5.2'
 gem 'font-awesome-sass', '~> 4.2.0'
+gem 'httparty'
 gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails'
 gem 'pg', '~> 0.18.3'
@@ -34,3 +35,6 @@ group :development do
   gem 'spring'
   gem 'web-console', '~> 2.0'
 end
+
+
+# gem 'pipedrive-ruby', '~>0.3.3', :git => 'git://github.com/Nicohelfen/pipedrive-ruby.git'

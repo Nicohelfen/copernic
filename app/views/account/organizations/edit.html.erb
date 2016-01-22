@@ -1,0 +1,16 @@
+<h1>Edit <%=@organization.name%></h1>
+
+
+<%= simple_form_for @organization, url:  compagny_account_organization_path(params[:compagny_id].to_i, @organization) do |f| %>
+
+    <%= f.input :name, label: 'Name' %>
+    <%= f.input :active_flag, label: 'active' %>
+    <%= f.button :submit %>
+
+  <%= f.button :button do %>
+    <%link_to "back", compagny_account_organizations_path(params[:compagny_id].to_i, @organization) %>
+  <% end %>
+<% end %>
+
+<br>
+<br>

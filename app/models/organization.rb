@@ -1,0 +1,3 @@
+class Organization < ActiveRecord::Base
+  # validates :pipe_organization_id, presence: true
+end
