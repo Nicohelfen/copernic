@@ -1,0 +1,33 @@
+
+<div id="flows">
+  <div id="space-navbar"></div>
+  <div>
+
+
+  </div>
+  <div class="row row-centered">
+    <div class="col-sm-12 col-md-9   col-centered col-fixed">
+    <h5> List of <%= @organizations.count %> Organizations  </h5>
+    <table style="width:100%">
+     <tr >
+      <th>Code</th>
+      <th>Name</th>
+    </tr>
+    <tr>
+      <% @organizations.each do |organization| %>
+        <td><%= organization.id %></td>
+        <td><%= organization.name %></td>
+        <td> <%= link_to edit_compagny_account_organization_path(params[:compagny_id], organization) do %>
+          <button type="button" class="btn btn-primary">Edit</button>
+        <% end %></td>
+        <td> <%= link_to compagny_account_organization_path(params[:compagny_id], organization) do %>
+          <button type="button" class="btn btn-primary">Show</button>
+        <% end %></td>
+      </tr>
+    <%end%>
+    </div>
+    </table>
+
+  </div>
+</div>
+

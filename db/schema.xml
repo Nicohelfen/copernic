@@ -37,7 +37,7 @@
     <type label="SET" length="1" sql="SET" quote=""/>
     <type label="Bit" length="0" sql="bit" quote=""/>
   </group>
-</datatypes><table x="567" y="269" name="flow">
+</datatypes><table x="525" y="264" name="flow">
 <row name="id" null="1" autoincrement="1">
 <datatype>TINYINT</datatype>
 <default>NULL</default></row>
@@ -79,7 +79,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="767" y="57" name="team">
+<table x="778" y="36" name="team">
 <row name="id" null="1" autoincrement="1">
 <datatype>TINYINT</datatype>
 <default>NULL</default></row>
@@ -91,9 +91,9 @@
 <datatype>TINYINT</datatype>
 <default>NULL</default><relation table="user" row="id" />
 </row>
-<row name="id_people" null="1" autoincrement="0">
+<row name="id_person" null="1" autoincrement="0">
 <datatype>TINYINT</datatype>
-<default>NULL</default><relation table="people" row="id" />
+<default>NULL</default><relation table="person" row="id" />
 </row>
 <row name="partner_id" null="1" autoincrement="0">
 <datatype>TINYINT</datatype>
@@ -106,7 +106,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="615" y="68" name="user">
+<table x="573" y="9" name="user">
 <row name="id" null="1" autoincrement="1">
 <datatype>TINYINT</datatype>
 <default>NULL</default></row>
@@ -125,11 +125,14 @@
 <row name="active" null="1" autoincrement="0">
 <datatype>TINYINT</datatype>
 <default>NULL</default></row>
+<row name="pipe_user_id" null="1" autoincrement="0">
+<datatype>TINYINT</datatype>
+<default>NULL</default></row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
 </table>
-<table x="955" y="56" name="people">
+<table x="968" y="109" name="person">
 <row name="id" null="1" autoincrement="1">
 <datatype>TINYINT</datatype>
 <default>NULL</default></row>
@@ -137,12 +140,15 @@
 <datatype>TINYINT</datatype>
 <default>NULL</default><relation table="organization" row="id" />
 </row>
+<row name="new field" null="1" autoincrement="0">
+<datatype>TINYINT</datatype>
+<default>NULL</default></row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
 <comment>contact Pipe drive via API</comment>
 </table>
-<table x="1013" y="171" name="partner">
+<table x="973" y="33" name="partner">
 <row name="id" null="1" autoincrement="1">
 <datatype>TINYINT</datatype>
 <default>NULL</default></row>
@@ -174,8 +180,20 @@
 <part>id</part>
 </key>
 </table>
-<table x="723" y="271" name="organization">
+<table x="717" y="237" name="organization">
 <row name="id" null="1" autoincrement="1">
+<datatype>TINYINT</datatype>
+<default>NULL</default></row>
+<row name="pipe_organization_id" null="1" autoincrement="0">
+<datatype>TINYINT</datatype>
+<default>NULL</default></row>
+<row name="name" null="1" autoincrement="0">
+<datatype>TINYINT</datatype>
+<default>NULL</default></row>
+<row name="active_flag" null="1" autoincrement="0">
+<datatype>TINYINT</datatype>
+<default>NULL</default></row>
+<row name="update_time" null="1" autoincrement="0">
 <datatype>TINYINT</datatype>
 <default>NULL</default></row>
 <key type="PRIMARY" name="">
@@ -183,7 +201,7 @@
 </key>
 <comment>api pipe drive</comment>
 </table>
-<table x="309" y="413" name="level">
+<table x="309" y="425" name="level">
 <row name="id" null="1" autoincrement="1">
 <datatype>TINYINT</datatype>
 <default>NULL</default></row>
@@ -198,7 +216,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="396" y="204" name="counter">
+<table x="333" y="154" name="counter">
 <row name="id" null="1" autoincrement="1">
 <datatype>TINYINT</datatype>
 <default>NULL</default></row>
@@ -218,7 +236,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="960" y="340" name="address">
+<table x="963" y="299" name="address">
 <row name="id" null="1" autoincrement="1">
 <datatype>TINYINT</datatype>
 <default>NULL</default></row>

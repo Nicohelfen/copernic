@@ -1,0 +1,35 @@
+
+<div id="organization">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 text-center"><h2>organization n° <%= @organization.id %>  </h2></div>
+    </div>
+
+    <div class="row form">
+      <div class="col-sm-12">
+
+    <div class="col-sm-12 col-md-6 col-centered col-fixed">
+
+     <br />
+     <ul>
+      <ul>Code: <%= @organization.id %></ul>
+      <ul>Name: <%= @organization.name.capitalize  %></ul>
+      <ul>Active: <%= @organization.active_flag %></ul>
+
+
+
+      <ul> <%= link_to compagny_account_organizations_path(params[:compagny_id]) do %>
+        <button type="button" class="btn btn-primary">Back</button>
+        <% end %></ul>
+      </ul>
+
+
+      </ul>
+
+    </div>
+     </div>
+   </div>
+ </div>
+</div>
+
+
