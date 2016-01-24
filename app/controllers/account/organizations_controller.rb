@@ -1,6 +1,8 @@
 module Account
 require 'pipedrive-ruby'
 
+
+
   class OrganizationsController < ApplicationController
 
     before_action :pipedrive_authenticate
@@ -36,7 +38,7 @@ require 'pipedrive-ruby'
   private
     def  pipedrive_authenticate
       #Authentificate, move this methode for protect Api Token
-       Pipedrive.authenticate('e90b446d8520d51ad97f05e194f0c25713201f11')
+        Pipedrive.authenticate('e90b446d8520d51ad97f05e194f0c25713201f11')
     end
 
     def pipedrive_add_new_organization
