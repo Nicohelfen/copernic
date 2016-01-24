@@ -6,8 +6,6 @@ module Pipedrive
     end
 
     def update
-
-
     end
 
     def persons
@@ -23,6 +21,9 @@ module Pipedrive
       def find_or_create_by_name(name, opts={})
         find_by_name(name).first || create(opts.merge(:name => name))
       end
+
+
+
 
     end
   end
