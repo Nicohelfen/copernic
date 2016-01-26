@@ -1,8 +1,8 @@
-<%if user_signed_in? %>
-  <%select_compagny_user%>
-<%end%>
+<%select_compagny_user%>
 
-<nav class="navbar navbar-default">
+
+
+  <nav class="navbar navbar-default">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -19,24 +19,27 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
       <% if user_signed_in? %>
+        <%if @choisecompagny != nil %>
 
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%=@choisecompagny.find(params[:compagny_id]).name%> <span class="caret"></span></a>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%=@choisecompagny.find(params[:compagny_id]).name%> <span class="caret"></span></a>
 
-          <ul class="dropdown-menu">
-             <% @choisecompagny.each do |t|  %>
-             <li><%= link_to compagny_account_root_path(t.id) do %>
-                <%= t.name %></li>
-                <%if t.id == @choisecompagny.last.id %>
-                <%else%>
-                  <li role="separator" class="divider"></li>
-                 <%end%>
-                <%end%>
+            <ul class="dropdown-menu">
 
-                <%end%>
-          </ul>
-        </li>
-      </ul>
+               <% @choisecompagny.each do |t|  %>
+               <li><%= link_to compagny_account_root_path(t.id) do %>
+                  <%= t.name %></li>
+                  <%if t.id == @choisecompagny.last.id %>
+                  <%else%>
+                    <li role="separator" class="divider"></li>
+                   <%end%>
+                  <%end%>
+
+                  <%end%>
+            </ul>
+          </li>
+        </ul>
+        <%end%>
       <%end%>
 
       <form class="navbar-form navbar-left" role="search">
@@ -47,6 +50,7 @@
       </form>
       <ul class="nav navbar-nav navbar-right">
         <%if user_signed_in? %>
+          <%if @choisecompagny != nil %>
 
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Flows <span class="caret"></span></a>
@@ -57,8 +61,10 @@
                <li><%= link_to  new_compagny_account_flow_path(params[:compagny_id])  do %>
                  <%= t ".sign_out", default: "New Flow" %>
               <% end %>
+            <%end%>
           </ul>
         </li>
+
 
 
         <li class="dropdown">
@@ -78,7 +84,9 @@
         <%else%>
           <li><%= link_to("Login", new_user_session_path)%></li>
         <%end%>
+
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
+
 </nav>
