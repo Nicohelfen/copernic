@@ -16,6 +16,8 @@ require 'pipedrive-ruby'
 
     def show
       @organization = Organization.find(params[:id])
+      @persons =  Pipedrive::Organization.find(params[:id]).persons
+
     end
 
     def edit
@@ -118,7 +120,7 @@ require 'pipedrive-ruby'
         @when = @organization.updated_at
       end
     end
-
-
+# its a good call for print person of compagny, is it  necessary to create a  persons model  ????
+# Pipedrive::Organization.find(params[:id]).persons
   end
 end

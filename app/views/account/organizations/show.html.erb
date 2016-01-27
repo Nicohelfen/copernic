@@ -2,7 +2,7 @@
 <div id="organization">
   <div class="container">
     <div class="row">
-      <div class="col-sm-12 text-center"><h2>organization n° <%= @organization.id %>  </h2></div>
+      <div class="col-sm-12 text-center"><h2>Organization n° <%= @organization.id %>  </h2></div>
     </div>
 
     <div class="row form">
@@ -16,20 +16,38 @@
       <ul>Name: <%= @organization.name.capitalize  %></ul>
       <ul>Active: <%= @organization.active_flag %></ul>
 
-
-
       <ul> <%= link_to compagny_account_organizations_path(params[:compagny_id]) do %>
         <button type="button" class="btn btn-primary">Back</button>
         <% end %></ul>
       </ul>
 
 
-      </ul>
 
-    </div>
-     </div>
-   </div>
- </div>
+<br>
+
+<h5> List of <%= @persons.count %> Persons  </h5>
+<p>------------------------------------------------</p>
+
+   <div class="row row-centered">
+    <div class="col-sm-12 col-md-9   col-centered col-fixed">
+
+        <table style="width:100%">
+          <tr>
+            <th>name</th>
+            <th>email</th>
+            <th>tel</th>
+            <th>function</th>
+          </tr>
+          <tr>
+           <%if persons != nil%>
+           <%@persons.each do |person| %>
+          <td><%= person.first_name %></td>
+          <td><%= person.last_name %></td>
+          <%else%>
+          <p>No persons fo <%=@organization.name%></p>
+          </tr>
+        <% end %>
+        </table>
 </div>
-
+</div>
 
