@@ -1,27 +1,24 @@
 module Account
 require 'pipedrive-ruby'
 
-
-
   class OrganizationsController < ApplicationController
-
-
 
     before_action :pipedrive_authenticate
 
     def index
-      pipedrive_add_new_organization
+      # pipedrive_add_new_organization
       @organizations = ( Organization.where(:active_flag=> true)).sort_by{ |m| m[:name] }
     end
 
     def show
       @organization = Organization.find(params[:id])
-      @persons =  Pipedrive::Organization.find(params[:id]).persons
+      @persons = Person.where(:organization_id=>params[:id])
 
     end
 
     def edit
-      @organization = Organization.find(params[:id])
+
+      @organization = Organization.find(params[:id]) || Organization.find(Person.find(params[:id]).organization_id)
       pipedrive_update_organization
     end
 
@@ -120,7 +117,7 @@ require 'pipedrive-ruby'
         @when = @organization.updated_at
       end
     end
-# its a good call for print person of compagny, is it  necessary to create a  persons model  ????
+# its a good call for print person of compagny, is it  necessary to create a  persons model ? Yes for performance
 # Pipedrive::Organization.find(params[:id]).persons
   end
 end
