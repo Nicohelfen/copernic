@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160121142008) do
+ActiveRecord::Schema.define(version: 20160202202519) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -91,6 +91,23 @@ ActiveRecord::Schema.define(version: 20160121142008) do
     t.boolean  "active_flag",          default: false
   end
 
+  create_table "people", force: :cascade do |t|
+    t.integer  "pipe_person_id"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "job"
+    t.boolean  "active_flag",     default: true
+    t.integer  "organization_id"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.date     "update_time"
+    t.string   "name"
+    t.string   "phone"
+  end
+
+  add_index "people", ["organization_id"], name: "index_people_on_organization_id", using: :btree
+
   create_table "userpermits", force: :cascade do |t|
     t.integer  "compagny_id"
     t.integer  "user_id"
@@ -129,6 +146,7 @@ ActiveRecord::Schema.define(version: 20160121142008) do
   add_foreign_key "flows", "counters"
   add_foreign_key "flows", "levels"
   add_foreign_key "levels", "compagnies"
+  add_foreign_key "people", "organizations"
   add_foreign_key "userpermits", "compagnies"
   add_foreign_key "userpermits", "users"
 end

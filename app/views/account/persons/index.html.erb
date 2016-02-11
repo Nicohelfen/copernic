@@ -1,0 +1,66 @@
+<h1>Hello List persons</h1>
+
+
+
+<div id="persons">
+  <div id="space-navbar"></div>
+  <div>
+
+
+  </div>
+
+  <div class="row row-centered">
+    <div class="col-sm-12 col-md-9   col-centered col-fixed">
+    <h5> List of <%= @persons.count %> Persons  </h5>
+    <table style="width:100%">
+     <tr >
+
+      <th>Organization</th>
+      <th>First_name</th>
+      <th>last_name</th>
+      <th>Email</th>
+      <th>Phone</th>
+    </tr>
+    <tr>
+      <% @persons.each do |person| %>
+
+        <% if person.organization_id != nil  %>
+          <td><%= @organizations.where(:id=>person.organization_id).first.name %></td>
+        <% else %>
+          <td></td>
+        <%end%>
+        <% if person.first_name != nil  %>
+          <td><%= person.first_name %></td>
+        <% else %>
+          <td></td>
+        <%end%>
+        <% if person.last_name != nil%>
+          <td><%= person.last_name %></td>
+        <% else %>
+          <td></td>
+        <%end%>
+        <%if person.email != nil%>
+          <td><%= person.email %></td>
+       <% else %>
+          <td></td>
+        <%end%>
+        <% if person.phone != nil %>
+          <td><%= person.phone  %></td>
+         <% else %>
+          <td></td>
+        <%end%>
+
+        <td> <%= link_to edit_compagny_account_organization_path(params[:compagny_id], person) do %>
+          <button type="button" class="btn btn-primary">Edit</button>
+        <% end %></td>
+        <td> <%= link_to compagny_account_organization_path(params[:compagny_id], person) do %>
+          <button type="button" class="btn btn-primary">Show</button>
+        <% end %></td>
+      </tr>
+    <%end%>
+    </div>
+    </table>
+
+  </div>
+</div>
+
