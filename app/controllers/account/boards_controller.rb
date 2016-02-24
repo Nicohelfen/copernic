@@ -5,7 +5,7 @@ module Account
 
       @pourc = 0.25
       @sr = 680000
-      @target = 0.76
+      @target = 0.7499
       @ca = 0
       @marge =  @target
 
