@@ -1,34 +1,73 @@
+<h1><%= @organizations.count %> Organizations</h1>
+  <div class="panel-body">
+    <div class="col-sm-4 m-b-mini">
+      <div class="btn-group" data-toggle="buttons">
+        <label class="btn btn-sm btn-white active">
+          <input type="radio" name="options" id="option1"> A
+        </label>
 
-<div id="flows">
-  <div id="space-navbar"></div>
-  <div>
+        <label class="btn btn-sm btn-white">
+          <input type="radio" name="options" id="option2"> B
+        </label>
 
-
-  </div>
-
-  <div class="row row-centered">
-    <div class="col-sm-12 col-md-9   col-centered col-fixed">
-    <h5> List of <%= @organizations.count %> Organizations  </h5>
-    <table style="width:100%">
-     <tr >
-      <th>Code</th>
-      <th>Name</th>
-    </tr>
-    <tr>
-      <% @organizations.each do |organization| %>
-        <td><%= organization.id %></td>
-        <td><%= organization.name %></td>
-        <td> <%= link_to edit_compagny_account_organization_path(params[:compagny_id], organization) do %>
-          <button type="button" class="btn btn-primary">Edit</button>
-        <% end %></td>
-        <td> <%= link_to compagny_account_organization_path(params[:compagny_id], organization) do %>
-          <button type="button" class="btn btn-primary">Show</button>
-        <% end %></td>
-      </tr>
-    <%end%>
+        <label class="btn btn-sm btn-white">
+          <input type="radio" name="options" id="option2"> C
+        </label>
+      </div>
     </div>
-    </table>
-
   </div>
-</div>
+
+  <div class="table-responsive">
+    <table class="table table-striped b-t text-small">
+    <thead>
+      <tr>
+        <th width="20"><input type="checkbox"></th>
+        <th class="th-sortable" data-toggle="class">Code
+          <span class="th-sort">
+            <i class="fa fa-sort-down text"></i>
+            <i class="fa fa-sort-up text-active"></i>
+            <i class="fa fa-sort"></i>
+          </span>
+        </th>
+
+        <th class="th-sortable" data-toggle="class"> Name
+          <span class="th-sort">
+            <i class="fa fa-sort-down text"></i>
+            <i class="fa fa-sort-up text-active"></i>
+            <i class="fa fa-sort"></i>
+          </span>
+          </th>
+
+        <th width="30">Edit</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <% @organizations.each do |organization| %>
+          <td><input type="checkbox" name="post[]" value="2"></td>
+            <% if organization.id != nil  %>
+              <td> <%= link_to compagny_account_organization_path(params[:compagny_id], organization) do %>
+                <%= organization.id %></td>
+                <% end %>
+               <% else %>
+               <td></td>
+              <%end%>
+            <% if organization.name != nil%>
+              <td> <%= link_to compagny_account_organization_path(params[:compagny_id], organization) do %>
+              <%= organization.name %></td>
+               <% end %>
+            <% else %>
+              <td></td>
+           <%end%>
+           <td> <%= link_to edit_compagny_account_organization_path(params[:compagny_id], organization) do  %>
+              <i type="button" class= "fa fa-pencil fa-lg"> </i>
+              <% end %></td>
+            </tr>
+          <%end%>
+    </tbody>
+    </table>
+    </div>
+  </div>
+
+
 

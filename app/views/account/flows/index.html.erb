@@ -1,57 +1,113 @@
-
-<div id="flows">
-  <div id="space-navbar"></div>
-  <div>
-
-    <%= link_to new_compagny_account_flow_path() do %>
-
-     Add Flow for <%= Compagny.find(params[:compagny_id].to_i).name.upcase %>
-    <% end %>
-
-  </div>
-  <div class="row row-centered">
-    <div class="col-sm-12 col-md-9   col-centered col-fixed">
-    <h5> List of <%= @flows.count %> flows  </h5>
-    <table style="width:100%">
-     <tr >
-      <th>Code</th>
-      <th>Name</th>
-      <th>Level</th>
-      <th>Sale Date</th>
-      <th>Deliverable</th>
-    </tr>
-
-
-    <tr>
-      <% @flows.each do |flow| %>
-      <%= link_to compagny_account_flow_path(params[:compagny_id], flow) do %>
-        <td><%= flow.code %></td>
-        <td><%= flow.name %></td>
-        <% if flow.level != nil %>
-          <td><%= flow.level.name %></td>
-        <%else%>
-          <td>No Level </td>
-        <%end%>
-        <%if flow.date_sale != nil %>
-          <td><%= flow.date_sale.strftime('%d.%m.%Y')%></td>
-        <%else%>
-          <td>No Date </td>
-        <%end%>
-        <td><%= flow.deliverable %></td>
-
-        <td> <%= link_to edit_compagny_account_flow_path(params[:compagny_id], flow) do %>
-          <button type="button" class="btn btn-primary">Edit</button>
-        <% end %></td>
-        <td> <%= link_to compagny_account_flow_path(params[:compagny_id], flow) do %>
-          <button type="button" class="btn btn-primary">Show</button>
-        <% end %></td>
-
-        <% end %>
-      <tr>
+<h1><%= @flows.count %> Flows</h1>
+   <div class="panel-body">
+    <p id="circle-buttons" class="doc-buttons">
+    <i> <%= link_to new_compagny_account_flow_path(), :class=> 'btn btn-white btn-circle' do %>
+      <i class="fa fa-plus"></i>Add</i>
     <%end%>
+    </p>
     </div>
-    </table>
 
+  <div class="table-responsive">
+    <table class="table table-striped b-t text-small">
+    <thead>
+      <tr>
+        <th width="20"><input type="checkbox"></th>
+        <th class="th-sortable" data-toggle="class">Code
+          <span class="th-sort">
+            <i class="fa fa-sort-down text"></i>
+            <i class="fa fa-sort-up text-active"></i>
+            <i class="fa fa-sort"></i>
+          </span>
+        </th>
+
+        <th class="th-sortable" data-toggle="class"> Name
+          <span class="th-sort">
+            <i class="fa fa-sort-down text"></i>
+            <i class="fa fa-sort-up text-active"></i>
+            <i class="fa fa-sort"></i>
+          </span>
+        </th>
+
+         <th class="th-sortable" data-toggle="class"> Level
+          <span class="th-sort">
+            <i class="fa fa-sort-down text"></i>
+            <i class="fa fa-sort-up text-active"></i>
+            <i class="fa fa-sort"></i>
+          </span>
+        </th>
+
+        <th class="th-sortable" data-toggle="class"> Sale Date
+          <span class="th-sort">
+            <i class="fa fa-sort-down text"></i>
+            <i class="fa fa-sort-up text-active"></i>
+            <i class="fa fa-sort"></i>
+          </span>
+        </th>
+
+        <th class="th-sortable" data-toggle="class"> Deliverable
+          <span class="th-sort">
+            <i class="fa fa-sort-down text"></i>
+            <i class="fa fa-sort-up text-active"></i>
+            <i class="fa fa-sort"></i>
+          </span>
+          </th>
+
+        <th width="30">Edit</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <% @flows.each do |flow| %>
+          <td><input type="checkbox" name="post[]" value="2"></td>
+            <% if flow.id != nil  %>
+              <td> <%= link_to compagny_account_flow_path(params[:compagny_id], flow) do %>
+                <%= flow.id %></td>
+              <% end %>
+            <% else %>
+              <td></td>
+            <%end%>
+
+            <% if flow.name != nil%>
+              <td> <%= link_to compagny_account_flow_path(params[:compagny_id], flow) do %>
+              <%= flow.name %></td>
+               <% end %>
+            <% else %>
+              <td></td>
+            <%end%>
+
+            <% if flow.level != nil  %>
+              <td> <%= link_to compagny_account_flow_path(params[:compagny_id], flow) do %>
+                <%= flow.level.name %></td>
+              <% end %>
+            <% else %>
+              <td>No Level</td>
+            <%end%>
+
+            <% if flow.date_sale != nil  %>
+              <td> <%= link_to compagny_account_flow_path(params[:compagny_id], flow) do %>
+                <%= flow.date_sale.strftime('%d.%m.%Y') %></td>
+              <% end %>
+            <% else %>
+              <td></td>
+            <%end%>
+
+            <% if flow.deliverable != nil  %>
+              <td> <%= link_to compagny_account_flow_path(params[:compagny_id], flow) do %>
+                <%= flow.deliverable %></td>
+              <% end %>
+            <% else %>
+              <td></td>
+            <%end%>
+
+           <td> <%= link_to edit_compagny_account_flow_path(params[:compagny_id], flow) do  %>
+              <i type="button" class= "fa fa-pencil fa-lg"> </i>
+              <% end %></td>
+            </tr>
+          <%end%>
+    </tbody>
+    </table>
+    </div>
   </div>
-</div>
+
+
 
