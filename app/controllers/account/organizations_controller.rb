@@ -20,6 +20,7 @@ require 'pipedrive-ruby'
 
       @organization = Organization.find(params[:id]) || Organization.find(Person.find(params[:id]).organization_id)
       pipedrive_update_organization
+
     end
 
     def update
@@ -57,9 +58,12 @@ require 'pipedrive-ruby'
     def pipedrive_update_organization
       #Update one Orgazination from PipeDrive To Organization Model, call by edit action
       @check = Pipedrive::Organization.find(Organization.where(:id=>params[:id]).first.pipe_organization_id)
+
       if @check.update_time != Organization.find(params[:id]).update_time
         @gap = { :id=> @check.id, :name=> @check.name, :update_time=> @check.update_time, :active_flag=> @check.active_flag }
-       (Organization.where(:pipe_organization_id => params[:id]).first).update(@gap)
+       # Organization.find(params[:id]).update(@gap)
+      (Organization.where(:pipe_organization_id => params[:id]).first).update(@gap)
+      edit
       end
     end
 
@@ -98,9 +102,11 @@ require 'pipedrive-ruby'
 
     def organization_update_pipedrive
       #Update Orgazinations from Organization To PipeDrive Model, call by edit action
-      @params = {:id=>params[:organization][:pipe_organization_id], :name => params[:organization][:name], :active_flag=> params[:organization][:active_flag]}
-      Pipedrive::Organization.update(@params)
       @active = params[:organization][:active_flag]
+      @pipe_organization_id = Organization.find(params[:id]).pipe_organization_id
+      @params = {:id=> @pipe_organization_id, :name => params[:organization][:name], :active_flag=> params[:organization][:active_flag]}
+      Pipedrive::Organization.update(@params)
+
     end
 
     def set_whitelist_update

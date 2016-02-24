@@ -1,66 +1,109 @@
-<h1>Hello List persons</h1>
+<h1><%= @persons.count %> Persons</h1>
+  <div class="panel-body">
+    <div class="col-sm-4 m-b-mini">
+      <div class="btn-group" data-toggle="buttons">
+        <label class="btn btn-sm btn-white active">
+          <input type="radio" name="options" id="option1"> A
+        </label>
 
+        <label class="btn btn-sm btn-white">
+          <input type="radio" name="options" id="option2"> B
+        </label>
 
+        <label class="btn btn-sm btn-white">
+          <input type="radio" name="options" id="option2"> C
+        </label>
 
-<div id="persons">
-  <div id="space-navbar"></div>
-  <div>
+      </div>
 
-
-  </div>
-
-  <div class="row row-centered">
-    <div class="col-sm-12 col-md-9   col-centered col-fixed">
-    <h5> List of <%= @persons.count %> Persons  </h5>
-    <table style="width:100%">
-     <tr >
-
-      <th>Organization</th>
-      <th>First_name</th>
-      <th>last_name</th>
-      <th>Email</th>
-      <th>Phone</th>
-    </tr>
-    <tr>
-      <% @persons.each do |person| %>
-
-        <% if person.organization_id != nil  %>
-          <td><%= @organizations.where(:id=>person.organization_id).first.name %></td>
-        <% else %>
-          <td></td>
-        <%end%>
-        <% if person.first_name != nil  %>
-          <td><%= person.first_name %></td>
-        <% else %>
-          <td></td>
-        <%end%>
-        <% if person.last_name != nil%>
-          <td><%= person.last_name %></td>
-        <% else %>
-          <td></td>
-        <%end%>
-        <%if person.email != nil%>
-          <td><%= person.email %></td>
-       <% else %>
-          <td></td>
-        <%end%>
-        <% if person.phone != nil %>
-          <td><%= person.phone  %></td>
-         <% else %>
-          <td></td>
-        <%end%>
-
-        <td> <%= link_to edit_compagny_account_organization_path(params[:compagny_id], person) do %>
-          <button type="button" class="btn btn-primary">Edit</button>
-        <% end %></td>
-        <td> <%= link_to compagny_account_organization_path(params[:compagny_id], person) do %>
-          <button type="button" class="btn btn-primary">Show</button>
-        <% end %></td>
-      </tr>
-    <%end%>
     </div>
-    </table>
-
   </div>
-</div>
+
+
+  <div class="table-responsive">
+    <table class="table table-striped b-t text-small">
+    <thead>
+      <tr>
+        <th width="20"><input type="checkbox"></th>
+        <th class="th-sortable" data-toggle="class">Organization
+          <span class="th-sort">
+            <i class="fa fa-sort-down text"></i>
+            <i class="fa fa-sort-up text-active"></i>
+            <i class="fa fa-sort"></i>
+          </span>
+        </th>
+
+        <th class="th-sortable" data-toggle="class">First Name
+          <span class="th-sort">
+            <i class="fa fa-sort-down text"></i>
+            <i class="fa fa-sort-up text-active"></i>
+            <i class="fa fa-sort"></i>
+          </span>
+          </th>
+
+        <th class="th-sortable" data-toggle="class">Last Name
+          <span class="th-sort">
+            <i class="fa fa-sort-down text"></i>
+            <i class="fa fa-sort-up text-active"></i>
+            <i class="fa fa-sort"></i>
+          </span>
+          </th>
+
+        <th class="th-sortable" data-toggle="class">Email
+          <span class="th-sort">
+            <i class="fa fa-sort-down text"></i>
+            <i class="fa fa-sort-up text-active"></i>
+            <i class="fa fa-sort"></i>
+          </span>
+          </th>
+
+        <th class="th-sortable" data-toggle="class">Phone
+          <span class="th-sort">
+            <i class="fa fa-sort-down text"></i>
+            <i class="fa fa-sort-up text-active"></i>
+            <i class="fa fa-sort"></i>
+          </span>
+          </th>
+
+        <th width="30">Edit</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+         <% @persons.each do |person| %>
+            <td><input type="checkbox" name="post[]" value="2"></td>
+              <% if person.organization_id != nil  %>
+                <td><%= @organizations.where(:id=>person.organization_id).first.name %></td>
+              <% else %>
+                <td></td>
+              <%end%>
+              <% if person.first_name != nil  %>
+                <td><%= person.first_name %></td>
+              <% else %>
+                <td></td>
+              <%end%>
+              <% if person.last_name != nil%>
+                <td><%= person.last_name %></td>
+              <% else %>
+                <td></td>
+              <%end%>
+              <%if person.email != nil%>
+                <td><%= person.email %></td>
+             <% else %>
+                <td></td>
+              <%end%>
+              <% if person.phone != nil %>
+                <td><%= person.phone  %></td>
+               <% else %>
+                <td></td>
+              <%end%>
+              <td> <%= link_to edit_compagny_account_organization_path(params[:compagny_id], person) do  %>
+                  <i type="button" class= "fa fa-pencil fa-lg"> </i>
+                <% end %></td>
+            </tr>
+          <%end%>
+    </tbody>
+    </table>
+    </div>
+  </div>
 

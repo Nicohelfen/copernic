@@ -1,22 +1,324 @@
+  <section id="content">
+    <section class="main padder">
+      <div class="clearfix">
+        <h4>Flow n° <b><%= @flow.code %></b> for <%= ((Compagny.find(compagny_id = @flow.compagny_id)).name).upcase  %></h4>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <section class="panel">
+            <div class="panel-body">
+              <div class="form-horizontal" method="get" data-validate="parsley">
+                <div class="form-group" "form-horizontal" >
 
-<div id="flow">
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-12 text-center"><h2>New Flow n° <%= @flow.code %> for <%= ((Compagny.find(compagny_id = @flow.compagny_id)).name).upcase  %> </h2></div>
+            <%= simple_form_for @flow, url: compagny_account_flows_path do |f|  %>
+
+                <div class="form-group">
+                  <label class="col-lg-3 control-label">Level</label>
+                  <div class="col-lg-4">
+                  <%= f.input_field  :level, collection: @levels, include_blank: false, class: 'btn btn-sm btn-white dropdown-toggle'  %>
+                </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="col-lg-3 control-label">Title</label>
+                  <div class="col-lg-8">
+                    <%= f.input_field :name, class: 'form-control'  %>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="col-lg-3 control-label">Description</label>
+                  <div class="col-lg-8">
+                    <%= f.input_field :description, class: 'form-control'%>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="col-lg-3 control-label">Deliverable</label>
+                  <div class="col-lg-8">
+                    <%= f.input_field :deliverable, label: 'Nb of deliverable', class:  'input-sm spinner-input form-control'%>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="col-lg-3 control-label">Date Sale</label>
+                  <div class="col-lg-9">
+                    <%= f.input_field :date_sale, class: 'input-sm form-control datepicker' %>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="col-lg-9 col-lg-offset-3">
+                   <%= f.button :submit,  class: 'btn btn-primary' %>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <%end%>
+          </section>
+
+          <section class="panel">
+            <div class="wizard clearfix" id="form-wizard">
+              <ul class="steps">
+                <li data-target="#step1" class="active"><span class="badge badge-info">1</span>Step 1</li>
+                <li data-target="#step2"><span class="badge">2</span>Step 2</li>
+                <li data-target="#step3"><span class="badge">3</span>Step 3</li>
+              </ul>
+            </div>
+            <div class="step-content">
+              <form>
+                <div class="step-pane active" id="step1">
+                  <p>Your website:</p>
+                  <input type="text" class="input-sm form-control" data-trigger="change" data-required="true" data-type="url" placeholder="website">
+                </div>
+                <div class="step-pane" id="step2">
+                  <p>Your email:</p>
+                  <input type="text" class="input-sm form-control" data-trigger="change" data-required="true" data-type="email" placeholder="email address">
+                </div>
+                <div class="step-pane" id="step3">This is step 3</div>
+              </form>
+              <div class="actions m-t">
+                <button type="button" class="btn btn-white btn-sm btn-prev" data-target="#form-wizard" data-wizard="previous" disabled="disabled">Prev</button>
+                <button type="button" class="btn btn-white btn-sm btn-next" data-target="#form-wizard" data-wizard="next" data-last="Finish">Next</button>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <div class="col-sm-6">
+          <div class="panel">
+          <div class="clearfix panel-body">
+                <p>Grow Processing</p>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <!-- radio -->
+                  <div class="radio">
+                    <label class="radio-custom">
+                      <input type="radio" name="radio" checked="checked">
+                      <i class="fa fa-circle-o"></i>
+                      Item one checked
+                    </label>
+                  </div>
+                  <div class="radio">
+                    <label class="radio-custom">
+                      <input type="radio" name="radio">
+                      <i class="fa fa-circle-o"></i>
+                      Item two
+                    </label>
+                  </div>
+                  <div class="radio">
+                    <label class="radio-custom">
+                      <input type="radio" name="radio" disabled="disabled">
+                      <i class="fa fa-circle-o"></i>
+                      Item three disabled
+                    </label>
+                  </div>
+                  <div class="radio">
+                    <label class="radio-custom">
+                      <input type="radio" checked="checked" disabled="disabled">
+                      <i class="fa fa-circle-o"></i>
+                      Item four checked disabled
+                    </label>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <!-- checkbox -->
+                  <div class="checkbox">
+                    <label class="checkbox-custom">
+                      <input type="checkbox" name="checkboxA" checked="checked">
+                      <i class="fa fa-check-square-o"></i>
+                      Item one checked
+                    </label>
+                  </div>
+                  <div class="checkbox">
+                    <label class="checkbox-custom">
+                      <input type="checkbox" name="checkboxB" id="2">
+                      <i class="fa fa-check-square-o"></i>
+                      Item two
+                    </label>
+                  </div>
+                  <div class="checkbox">
+                    <label class="checkbox-custom">
+                      <input type="checkbox" name="checkboxC" disabled="disabled">
+                      <i class="fa fa-check-square-o"></i>
+                      Item three disabled
+                    </label>
+                  </div>
+                  <div class="checkbox">
+                    <label class="checkbox-custom">
+                      <input type="checkbox" name="checkboxD" checked="checked" disabled="disabled">
+                      <i class="fa fa-check-square-o"></i>
+                      Item four checked disabled
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+
+              </div>
+              </div>
+
+
+
+        <div class="col-sm-6">
+          <div class="panel">
+          <div class="clearfix panel-body">
+                <p>Organization</p>
+
+
+              </div>
+              </div>
+              </div>
+
+              <div class="col-sm-6">
+                <div class="panel">
+                  <div class="clearfix panel-body">
+                <p>Project Team </p>
+                  <div id="MyPillbox" class="pillbox clearfix m-b">
+                  <ul>
+                    <li class="label bg-info">Rosalie</li>
+                    <li class="label bg-info">Benjamin</li>
+                    <li class="label bg-success">Olivier</li>
+                    <li class="label bg-info">Thomas</li>
+                    <li class="label bg-info">Jeanne</li>
+                    <li class="label bg-success">Priscilia</li>
+                    <li class="label bg-warning">Bernard</li>
+                    <input type="text" placeHolder="add a person">
+                  </ul>
+                </div>
+              <div>
+
+              </div>
+
+
+              <div class="row">
+                <div class="col-lg-6">
+
+                  <div class="radio">
+
+                  </div>
+                  <div class="radio">
+
+                  </div>
+                  <div class="radio">
+
+                  </div>
+                  <div class="radio">
+
+                  </div>
+                </div>
+                <div class="col-lg-6">
+
+                  </div>
+                  <div class="checkbox">
+
+                  </div>
+                  <div class="checkbox">
+
+                  </div>
+                  <div class="checkbox">
+
+                  </div>
+                </div>
+              </div>
+              <div>
+                 </div>
+                  </div>
+
+
+
+
+                <p>Datepicker</p>
+                <div class="m-b row">
+                  <div class="col-lg-6">
+                    <input class="input-sm form-control datepicker" size="16" type="text" value="12-02-2013" data-date-format="dd-mm-yyyy" >
+                  </div>
+                </div>
+
+                <p>Select2</p>
+                <div class="m-b">
+                  <select id="select2-option" style="width:260px">
+                      <optgroup label="Alaskan/Hawaiian Time Zone">
+                          <option value="AK">Alaska</option>
+                          <option value="HI">Hawaii</option>
+                      </optgroup>
+                      <optgroup label="Pacific Time Zone">
+                          <option value="CA">California</option>
+                          <option value="NV">Nevada</option>
+                          <option value="OR">Oregon</option>
+                          <option value="WA">Washington</option>
+                      </optgroup>
+                      <optgroup label="Mountain Time Zone">
+                          <option value="AZ">Arizona</option>
+                          <option value="CO">Colorado</option>
+                          <option value="ID">Idaho</option>
+                          <option value="MT">Montana</option><option value="NE">Nebraska</option>
+                          <option value="NM">New Mexico</option>
+                          <option value="ND">North Dakota</option>
+                          <option value="UT">Utah</option>
+                          <option value="WY">Wyoming</option>
+                      </optgroup>
+                      <optgroup label="Central Time Zone">
+                          <option value="AL">Alabama</option>
+                          <option value="AR">Arkansas</option>
+                          <option value="IL">Illinois</option>
+                          <option value="IA">Iowa</option>
+                          <option value="KS">Kansas</option>
+                          <option value="KY">Kentucky</option>
+                          <option value="LA">Louisiana</option>
+                          <option value="MN">Minnesota</option>
+                          <option value="MS">Mississippi</option>
+                          <option value="MO">Missouri</option>
+                          <option value="OK">Oklahoma</option>
+                          <option value="SD">South Dakota</option>
+                          <option value="TX">Texas</option>
+                          <option value="TN">Tennessee</option>
+                          <option value="WI">Wisconsin</option>
+                      </optgroup>
+                      <optgroup label="Eastern Time Zone">
+                          <option value="CT">Connecticut</option>
+                          <option value="DE">Delaware</option>
+                          <option value="FL">Florida</option>
+                          <option value="GA">Georgia</option>
+                          <option value="IN">Indiana</option>
+                          <option value="ME">Maine</option>
+                          <option value="MD">Maryland</option>
+                          <option value="MA">Massachusetts</option>
+                          <option value="MI">Michigan</option>
+                          <option value="NH">New Hampshire</option><option value="NJ">New Jersey</option>
+                          <option value="NY">New York</option>
+                          <option value="NC">North Carolina</option>
+                          <option value="OH">Ohio</option>
+                          <option value="PA">Pennsylvania</option><option value="RI">Rhode Island</option><option value="SC">South Carolina</option>
+                          <option value="VT">Vermont</option><option value="VA">Virginia</option>
+                          <option value="WV">West Virginia</option>
+                      </optgroup>
+                  </select>
+                </div>
+                <div class="m-b">
+                  <input type="hidden" id="select2-tags" style="width:260px" value="brown"/>
+                </div>
+                <div class="dropfile visible-lg m-t block">
+                  <small>Drag and Drop file here</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </section>
+  <!-- footer -->
+  <footer id="footer">
+    <div class="text-center padder clearfix">
+      <p>
+        <small>&copy; first 2013, Mobile first web app framework base on Bootstrap</small><br><br>
+        <a href="#" class="btn btn-xs btn-circle btn-twitter"><i class="fa fa-twitter"></i></a>
+        <a href="#" class="btn btn-xs btn-circle btn-facebook"><i class="fa fa-facebook"></i></a>
+        <a href="#" class="btn btn-xs btn-circle btn-gplus"><i class="fa fa-google-plus"></i></a>
+      </p>
     </div>
-    <div class="row form">
-      <div class="col-sm-12">
-       <%= simple_form_for @flow, url: compagny_account_flows_path do |f| %>
-       <%= f.input :level, collection: @levels, prompt: "Select your stage", include_blank: false %>
-       <%= f.input :name, label: 'Title' %>
-       <%= f.input :description%>
-       <%= f.input :deliverable, label: 'Nb of deliverable'%>
-       <%= f.input :date_sale%>
-       <%= f.button :submit %>
-       <% end %>
-     </div>
-   </div>
- </div>
-</div>
-
-
+  </footer>
+  </body>
+</html>

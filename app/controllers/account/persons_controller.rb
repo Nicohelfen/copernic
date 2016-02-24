@@ -7,6 +7,8 @@ require 'pipedrive-ruby'
 
   def index
     @persons = Person.where(:active_flag=> true)
+
+    # alphabetical(@persons)
     @organizations = Organization.all
     # pipedrive_synchronize
   end
@@ -80,6 +82,10 @@ require 'pipedrive-ruby'
       end
     end
 
+    def alphabetical(persons)
+      # To do => Create a methode for class @persons to alphabetical  order end extrat A..to..Z
+      # create a privat methode for extract first character with self[0,1]  @persons.first.first_name[0,1]
+    end
     # To do =>
        # Acte if Organizations & Persons belongs to compagny
        # Make Update unik person when you click on show or update
