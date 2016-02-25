@@ -74,7 +74,8 @@
                   <span class="timeline-date">Qualité</span>
                   <h5>
                     <span>Belles réalisations</span>
-                    Boulanger Oglo, Voeux, ect...
+                    <h6>Boulanger Oglo, Paul, Corian,  </h6>
+                    <h6>Voeux, Essentiel B</h6>
 
 
                   </h5>
@@ -159,7 +160,7 @@
               <div class="timeline-caption">
                 <div class="panel arrow arrow-left">
                   <span class="timeline-icon"><i class="fa fa-code time-icon"></i></span>
-                  <span class="timeline-date"> Ce que nous avons </span>
+                  <span class="timeline-date"> Une Terre Fertile </span>
                   <h5>
                     <span>Chance ! </span>
                     <h6> Une histoire <h6>
@@ -178,10 +179,10 @@
               <div class="timeline-caption">
                 <div class="panel arrow arrow-right">
                   <span class="timeline-icon"><i class="fa fa-plane time-icon"></i></span>
-                  <span class="timeline-date"> La décision est prise </span>
+                  <span class="timeline-date"> Décision pour le futur </span>
                   <h5>
                     <span> VEV autour d'un</span>
-                    <h6> Directeur Opérationnel <h6>
+                    <h6> Directeur d'Agence <h6>
                     <h1>Rosalie</h1>
                   </h5>
 
@@ -198,8 +199,8 @@
                   <h5>
                     <span>Au quotidien</span>
                   </h5>
-                    <h6>Rosalie, dirige les opérations</h6>
-                    <h6>Nicolas, gère le back-office</h6>
+                    <h6>Rosalie, Dirige les Opérations</h6>
+                    <h6>Nicolas, Strategie & Back-office</h6>
                 </div>
               </div>
           </article>
@@ -229,7 +230,7 @@
                     <span>100% libéré, donc 100% responsable ?  </span>
                   </h5>
                     <h6> Plus de libérté dans les décisions </h6>
-                    <h6> Partage du Bénéfices de VEV  </h6>
+                    <h6> Partage des Bénéfices </h6>
                 </div>
               </div>
           </article>
@@ -240,11 +241,11 @@
                   <span class="timeline-icon"><i class="fa fa-male time-icon bg-success"></i></span>
                   <span class="timeline-date"> Organisation identique </span>
                   <h5>
-                    <span> Mode Drivé par un Responsable avec 10 ans d'expérience</span>
+                    <span> Mode Drivé par un Responsable  (10 ans d'expérience)</span>
                   </h5>
                   <h6> Nous restons dans ce que nous connaissons</h6>
                   <h6> Responsabilité individuelle plus limitée</h6>
-                  <h6> Le Bénéfice partagé va dans la rémunération du Manager </h6>
+                  <h6> Le Bénéfice finance la  rémunération du Manager </h6>
                 </div>
               </div>
           </article>
@@ -257,7 +258,7 @@
 
 <div class="col-lg-6 control-label">
 
-<section class="panel">
+        <section class="panel">
             <header class="panel-heading">
               <span class="label bg-info pull-right">25%</span>
               Partage des Bénéfices : Modalités
@@ -272,11 +273,11 @@
                 </div>
                 <div class="media-body">
                   <div class="pull-right media-mini text-center text-muted">
-                    <strong class="h4">680 000 euros</strong><br>
+                    <strong class="h4">691 000 euros</strong><br>
                     <small class="label bg-light"></small>
                   </div>
                   <a href="#" class="h4">A l'atteinte du seuil de rentabilité </a>
-                  <small class="block">le seuil de rentabilité est le montansts de chiffre d'affaires. Il est calculer sur la base des charges fixes et le pourcentage de marge brut réalisé</small>
+                  <small class="block">le seuil de rentabilité est le montants de facturation à partir duquel l'entreprise commence a gagner de l'argent. On l'appel aussi "Point mort"</small>
                 </div>
               </article>
               <div class="line pull-in"></div>
@@ -289,10 +290,10 @@
                 </div>
                 <div class="media-body">
                   <div class="pull-right media-mini text-center text-muted">
-                    <strong class="h4">25%</strong><br>
+                    <strong class="h4"></strong><br>
                     <small class="label bg-light"></small>
                   </div>
-                  <a href="#" class="h4">25% de chaque euros supplémentaire facturé est destinée à l'équipe</a>
+                  <a href="#" class="h4"> Un pourcentage de chaque euros supplémentaire facturé est destinée à l'équipe</a>
                   <small class="block">La premier temps de l'année est destinée à l'atteinte du seuil. le second temps : Enjendrer le maximum de prime.  </small>
                 </div>
               </article>
@@ -327,11 +328,11 @@
                 </div>
                 <div class="media-body">
                   <div class="pull-right media-mini text-center text-muted">
-                    <strong class="h4">2,3  </strong><br>
+                    <strong class="h4">2,1  </strong><br>
                     <small class="label bg-light">Mois</small>
                   </div>
                   <a href="#" class="h4 text-success">Exemple : pour une facturation de 820 Keuros en 2016 ? </a>
-                  <small class="block">Le système permet a chacun d'obtenir 2,3 mois de salaire en plus</small>
+                  <small class="block">Le système permet a chacun d'obtenir 2,1 mois de salaire en plus</small>
                 </div>
               </article>
             </section>
@@ -339,11 +340,57 @@
 </div>
 
 
+<div class="col-lg-6 control-label">
+
+        <section class="panel">
+
+          <header class="panel-heading">
+              <span class="label bg-info pull-right">Exemple</span>
+              <%= form_tag("/compagny/6/account/", method: "get") do %>
+                <%= label_tag( :q, "Facturation & Marge:") %>
+                <%= number_field_tag(:q) %>
+                <%= number_field_tag(:marge) %>
+                <%= submit_tag("Calcul") %>
+                <% end %>
+            </header>
+
+            <div class="panel-body">
+              <div class="form-horizontal" method="get" data-validate="parsley">
+                <div class="form-group" "form-horizontal" >
+
+
+
+
+
+
+
+              <%if @ca != 0 %>
+                <h5>Chiffre d'affaires  : <%= number_with_delimiter(@ca, delimiter: " ") %> Euros </h5>
+                <h5>Marge réalisée: <%= number_to_percentage(@marge * 100) %> </h5>
+                <h5>Seuil de rentabilité : <%= number_with_delimiter(@sr, delimiter: " ") %> Euros </h5>
+                <h5>Seuil de rentabilité ajusté : <%= number_with_delimiter(@srajust.round(0), delimiter: " ") %> Euros</h5>
+                <%if @prime > 0 %>
+                <br>
+                  <h4>Prime individuelle : <%= @mois  %> Mois </h4>
+
+                <%end%>
+              <%end%>
+           </div>
+            </div>
+          </div>
+      </section>
+      </div>
+
+
+
+
+
+
 
 
         <div class="col-lg-9 control-label">
 
-<section class="panel">
+    <section class="panel">
             <header class="panel-heading">
               <span class="label bg-info pull-right">Focus Strategique</span>
               Pour réuissir, il faut intégrer ceci !
@@ -446,38 +493,6 @@
 
 
 
-
-<section class="panel">
-            <div class="panel-body">
-              <div class="form-horizontal" method="get" data-validate="parsley">
-                <div class="form-group" "form-horizontal" >
-
-             <%= form_tag("/compagny/6/account/", method: "get") do %>
-                <%= label_tag( :q, "Facturation & Marge:") %>
-                <%= number_field_tag(:q) %>
-                <%= number_field_tag(:marge) %>
-
-                <%= submit_tag("Calcul") %>
-              <% end %>
-
-              <%if @ca != 0 %>
-                <h5>Chiffre d'affaires  : <%= number_with_delimiter(@ca, delimiter: " ") %> Euros </h5>
-                <h5>Marge réalisée: <%= number_to_percentage(@marge * 100) %> </h5>
-                <h5>Seuil de rentabilité : <%= number_with_delimiter(@sr, delimiter: " ") %> Euros </h5>
-                <h5>Seuil de rentabilité ajusté : <%= number_with_delimiter(@srajust.round(0), delimiter: " ") %> Euros</h5>
-                <%if @prime > 0 %>
-                  <h4>Prime individuel : <%= @mois  %> Mois</h4>
-                <%end%>
-              <%end%>
-
-
-
-            </div>
-            </div>
-          </div>
-
-
-</section>
 
 
 

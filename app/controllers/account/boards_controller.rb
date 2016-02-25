@@ -2,10 +2,16 @@ module Account
   class BoardsController < ApplicationController
 
     def index
+      calculprime
+   end
 
-      @pourc = 0.25
-      @sr = 680000
-      @target = 0.7499
+  private
+
+  def calculprime
+
+    @pourc = 0.25
+      @sr = 691000
+      @target = 0.73
       @ca = 0
       @marge =  @target
 
@@ -21,16 +27,10 @@ module Account
           @mass = 181674
           @mois = ((@prime/@mass) * 12 ).round(1)
 
+
       end
 
-
-
-
-    end
-
-  private
-
-
+  end
 
 
 
