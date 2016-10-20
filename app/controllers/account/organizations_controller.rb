@@ -7,7 +7,9 @@ require 'pipedrive-ruby'
 
     def index
       # pipedrive_add_new_organization
-      @organizations = ( Organization.where(:active_flag=> true)).sort_by{ |m| m[:name] }
+      # @organizations = Organization.where(:active_flag=> true)
+      @organizations =  (Organization.where(:active_flag=> true).where(:compagny_id=> params[:compagny_id].to_i)).sort_by{ |m| m[:name] }
+
     end
 
     def show
@@ -18,7 +20,14 @@ require 'pipedrive-ruby'
 
     def edit
 
-      @organization = Organization.find(params[:id]) || Organization.find(Person.find(params[:id]).organization_id)
+      @urlorigin = "http://#{@_env["HTTP_HOST"]}/compagny/#{params[:compagny_id]}/account/persons"
+
+      if @_env["HTTP_REFERER"] != @urlorigin
+        @organization = Organization.find(params[:id])
+      else
+        @organization = Organization.find(Person.find(params[:id]).organization_id)
+      end
+
       pipedrive_update_organization
 
     end
@@ -39,17 +48,21 @@ require 'pipedrive-ruby'
 
   private
     def  pipedrive_authenticate
-      #Authentificate, move this methode for protect Api Token
-        Pipedrive.authenticate(ENV["pipedrive_api_key"])
+      #Authentificate, move this method for protect Api Token
+
+        Pipedrive.authenticate(Compagny.find(params['compagny_id']).token)
+
     end
 
     def pipedrive_add_new_organization
       #Add New Orgazinations from PipeDrive To Organization Model
       @organizations = Organization.all
       @new = @organizations.count
+
       @orgapipes = Pipedrive::Organization.all(nil, options={:query=>{:start=>@new}}, true)
       @orgapipes.each do |orgapipe|
         if Organization.where(:pipe_organization_id=> orgapipe.id) == []
+
             Organization.create(pipe_organization_id: orgapipe.id, name: orgapipe.name, update_time: orgapipe.update_time )
         end
       end
@@ -57,12 +70,14 @@ require 'pipedrive-ruby'
 
     def pipedrive_update_organization
       #Update one Orgazination from PipeDrive To Organization Model, call by edit action
+
       @check = Pipedrive::Organization.find(Organization.where(:id=>params[:id]).first.pipe_organization_id)
 
       if @check.update_time != Organization.find(params[:id]).update_time
         @gap = { :id=> @check.id, :name=> @check.name, :update_time=> @check.update_time, :active_flag=> @check.active_flag }
        # Organization.find(params[:id]).update(@gap)
       (Organization.where(:pipe_organization_id => params[:id]).first).update(@gap)
+
       edit
       end
     end

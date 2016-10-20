@@ -14,6 +14,7 @@ require 'pipedrive-ruby'
   end
 
   def edit
+raise
   end
 
   def update

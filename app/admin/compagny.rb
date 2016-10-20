@@ -1,6 +1,6 @@
 ActiveAdmin.register Compagny do
 
-  permit_params :name, :address, :zip, :city, :country
+  permit_params :name, :address, :zip, :city, :country, :token
 
   sidebar "Compagny Details", only: [:show, :edit] do
     ul do
@@ -16,6 +16,7 @@ ActiveAdmin.register Compagny do
       column :address
       column :zip
       column :country
+      column :token
       actions
   end
 end

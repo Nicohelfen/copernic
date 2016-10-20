@@ -9,9 +9,11 @@ private
         else
           @choisecompagny = User.find(current_user.id).compagnies
           if
+            # Find a preference priority compagny for User
             params[:compagny_id] == nil
             params[:compagny_id] = Userpermit.where(:user => current_user, :priority => true).first
              if
+            # If not Preference priority, choise the first Compagny User
               params[:compagny_id] == nil
               params[:compagny_id] = Userpermit.where(:user => current_user).first.compagny_id
               @choisecompagny = User.find(current_user.id).compagnies
@@ -20,9 +22,9 @@ private
             @choisecompagny = User.find(current_user.id).compagnies
               end
           end
-          end
+        end
+      end
     end
-  end
 
 
 

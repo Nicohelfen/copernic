@@ -10,7 +10,6 @@ module Account
 
     def index
       @flows = Flow.where(:compagny_id=> params[:compagny_id]).sort
-
     end
 
     def edit

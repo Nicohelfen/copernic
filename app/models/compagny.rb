@@ -5,6 +5,7 @@ has_many :flows, dependent: :nullify
 has_many :counters, dependent: :nullify
 has_many :userpermits, dependent: :destroy
 has_many :user, through: :userpermits
+has_many :organizations, dependent: :nullify
 
 
   # validates :name, presence: true

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160202202519) do
+ActiveRecord::Schema.define(version: 20160524130424) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20160202202519) do
     t.string   "country"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "token"
   end
 
   create_table "counters", force: :cascade do |t|
@@ -89,7 +90,10 @@ ActiveRecord::Schema.define(version: 20160202202519) do
     t.datetime "updated_at",                           null: false
     t.string   "update_time"
     t.boolean  "active_flag",          default: false
+    t.integer  "compagny_id"
   end
+
+  add_index "organizations", ["compagny_id"], name: "index_organizations_on_compagny_id", using: :btree
 
   create_table "people", force: :cascade do |t|
     t.integer  "pipe_person_id"
@@ -146,6 +150,7 @@ ActiveRecord::Schema.define(version: 20160202202519) do
   add_foreign_key "flows", "counters"
   add_foreign_key "flows", "levels"
   add_foreign_key "levels", "compagnies"
+  add_foreign_key "organizations", "compagnies"
   add_foreign_key "people", "organizations"
   add_foreign_key "userpermits", "compagnies"
   add_foreign_key "userpermits", "users"
