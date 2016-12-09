@@ -6,8 +6,11 @@ require 'pipedrive-ruby'
     before_action :pipedrive_authenticate
 
     def index
+      # Check if exsiting news Organizations on PipeDrive and create
+
       # pipedrive_add_new_organization
-      # @organizations = Organization.where(:active_flag=> true)
+
+      # Display & Sort Organizations for Active Compagny
       @organizations =  (Organization.where(:active_flag=> true).where(:compagny_id=> params[:compagny_id].to_i)).sort_by{ |m| m[:name] }
 
     end
@@ -35,6 +38,7 @@ require 'pipedrive-ruby'
     def update
       @organization = Organization.find(params[:id])
       set_whitelist_update
+
       if @organization.update(@whitelistupdate)
         flash[:notice] = "Your Organization has been updated"
         redirect_to  compagny_account_organizations_path(params[:compagny_id].to_i)
@@ -49,28 +53,26 @@ require 'pipedrive-ruby'
   private
     def  pipedrive_authenticate
       #Authentificate, move this method for protect Api Token
-
         Pipedrive.authenticate(Compagny.find(params['compagny_id']).token)
 
     end
 
     def pipedrive_add_new_organization
-      #Add New Orgazinations from PipeDrive To Organization Model
-      @organizations = Organization.all
-      @new = @organizations.count
+      #Add New Orgazinations from PipeDrive To Organization Model,  only use with syncho_organizations_date
+      @organizations =  Organization.where(:compagny_id=> params[:compagny_id])
 
+      #Use @new only for duration optimisation into options={:query=>{:start=>@new}.
+      @new = @organizations.count
       @orgapipes = Pipedrive::Organization.all(nil, options={:query=>{:start=>@new}}, true)
       @orgapipes.each do |orgapipe|
-        if Organization.where(:pipe_organization_id=> orgapipe.id) == []
-
-            Organization.create(pipe_organization_id: orgapipe.id, name: orgapipe.name, update_time: orgapipe.update_time )
+        if Organization.where(:compagny_id=> params[:compagny_id].to_i).where(:pipe_organization_id=> orgapipe.id) == []
+          Organization.create(:compagny_id=> params[:compagny_id].to_i, pipe_organization_id: orgapipe.id, name: orgapipe.name, update_time: orgapipe.update_time )
         end
       end
     end
 
     def pipedrive_update_organization
-      #Update one Orgazination from PipeDrive To Organization Model, call by edit action
-
+      #Update one Orgazination from PipeDrive To Organization Model, call by edit & Show actions
       @check = Pipedrive::Organization.find(Organization.where(:id=>params[:id]).first.pipe_organization_id)
 
       if @check.update_time != Organization.find(params[:id]).update_time
@@ -82,8 +84,9 @@ require 'pipedrive-ruby'
       end
     end
 
+
     def pipedrive_update_organizations
-      #Update Orgazinations from PipeDrive To Organization Model, Job schedule,  not use with call action user time is so long!
+      #Update Organizations from PipeDrive To Organization Model, only use with syncho_organizations_date
       #Step 1 => check all Organization & Gap select update_time
       @organizations = Organization.all
       @orgapipes = Pipedrive::Organization.all(nil, options={:query=>{:start=>0}}, true)
@@ -110,18 +113,18 @@ require 'pipedrive-ruby'
 
       #Step 3 => Update Organization whith lists
       @lists.each do |list|
-        (Organization.where(:pipe_organization_id => list[:id]).first).update(list)
+        @list = {:name => list[:name], :active_flag => list[:active_flag]}
+        (Organization.where(:pipe_organization_id => list[:id]).first).update(@list)
       end
     end
 
 
     def organization_update_pipedrive
-      #Update Orgazinations from Organization To PipeDrive Model, call by edit action
+      #Update Organization from Organization To PipeDrive Model, call by edit action
       @active = params[:organization][:active_flag]
       @pipe_organization_id = Organization.find(params[:id]).pipe_organization_id
       @params = {:id=> @pipe_organization_id, :name => params[:organization][:name], :active_flag=> params[:organization][:active_flag]}
       Pipedrive::Organization.update(@params)
-
     end
 
     def set_whitelist_update
@@ -138,7 +141,16 @@ require 'pipedrive-ruby'
         @when = @organization.updated_at
       end
     end
+
+    def synchro_organizations_date
+      # Add & Update Organizations from PipeDrive To Organization Model, Job schedule,  not use with call action user time is so long!
+      # For perferct integration With PipeDrive to Corpornic, developp on API in copernic and Use Zapier (zapier.com) for Integration. API to API
+      pipedrive_add_new_organization
+      pipedrive_update_organizations
+    end
+
 # its a good call for print person of compagny, is it  necessary to create a  persons model ? Yes for performance
 # Pipedrive::Organization.find(params[:id]).persons
   end
 end
+
