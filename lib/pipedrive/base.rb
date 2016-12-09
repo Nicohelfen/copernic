@@ -73,6 +73,7 @@ module Pipedrive
 
       def authenticate(token)
         default_params :api_token => token
+
       end
 
       # Examines a bad response and raises an appropriate exception

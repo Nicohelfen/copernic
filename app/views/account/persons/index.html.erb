@@ -33,7 +33,7 @@
           </span>
         </th>
 
-        <th class="th-sortable" data-toggle="class">First Name
+        <th class="th-sortable" data-toggle="class"> Name
           <span class="th-sort">
             <i class="fa fa-sort-down text"></i>
             <i class="fa fa-sort-up text-active"></i>
@@ -41,13 +41,6 @@
           </span>
           </th>
 
-        <th class="th-sortable" data-toggle="class">Last Name
-          <span class="th-sort">
-            <i class="fa fa-sort-down text"></i>
-            <i class="fa fa-sort-up text-active"></i>
-            <i class="fa fa-sort"></i>
-          </span>
-          </th>
 
         <th class="th-sortable" data-toggle="class">Email
           <span class="th-sort">
@@ -65,7 +58,15 @@
           </span>
           </th>
 
-        <th width="30">Edit</th>
+        <th class="th-sortable" data-toggle="class">Job
+          <span class="th-sort">
+            <i class="fa fa-sort-down text"></i>
+            <i class="fa fa-sort-up text-active"></i>
+            <i class="fa fa-sort"></i>
+          </span>
+          </th>
+
+
       </tr>
     </thead>
     <tbody>
@@ -73,20 +74,19 @@
          <% @persons.each do |person| %>
             <td><input type="checkbox" name="post[]" value="2"></td>
               <% if person.organization_id != nil  %>
-                <td><%= @organizations.where(:id=>person.organization_id).first.name %></td>
+
+                <td><%= link_to compagny_account_organization_path(params[:compagny_id], person.organization_id) do %>
+                  <%= @organizations.where(:id=>person.organization_id).first.name %></td>
+                  <%end%>
               <% else %>
                 <td></td>
               <%end%>
-              <% if person.first_name != nil  %>
-                <td><%= person.first_name %></td>
+              <% if person.name != nil  %>
+                <td><%= person.name %> </td>
               <% else %>
-                <td></td>
               <%end%>
-              <% if person.last_name != nil%>
-                <td><%= person.last_name %></td>
-              <% else %>
                 <td></td>
-              <%end%>
+
               <%if person.email != nil%>
                 <td><%= person.email %></td>
              <% else %>
@@ -97,13 +97,17 @@
                <% else %>
                 <td></td>
               <%end%>
-              <td> <%= link_to edit_compagny_account_organization_path(params[:compagny_id], person) do  %>
-                  <i type="button" class= "fa fa-pencil fa-lg"> </i>
-                <% end %></td>
+              <% if person.job != nil %>
+                <td><%= person.job  %></td>
+              <% else %>
+                <td></td>
+              <%end%>
+
             </tr>
           <%end%>
     </tbody>
     </table>
     </div>
   </div>
+
 

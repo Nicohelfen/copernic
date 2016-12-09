@@ -25,6 +25,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'country_select'
 
 
+
 group :development, :test do
   gem 'byebug'
   gem "binding_of_caller"

@@ -8,13 +8,14 @@ require 'pipedrive-ruby'
   def index
     @persons = Person.where(:active_flag=> true)
 
+
     # alphabetical(@persons)
     @organizations = Organization.all
     # pipedrive_synchronize
   end
 
   def edit
-raise
+    @person = Person.find(params[:id])
   end
 
   def update
@@ -50,8 +51,6 @@ raise
       #Update Persons from PipeDrive To Person Model, Job schedule,  not use with call action user time is so long!
       #Step 1 => check all Persons & Gap select update_time
       @persons = Person.where(:active_flag=> true)
-
-
       @gaps = { :id=> nil, :name=> nil, :first_name=> nil, :last_name=> nil, :email=> nil, :job=> nil, :organization_id=> nil, :pipe_person_id=> nil, :phone=> [], :update_time=> nil }
       @lists = []
 
