@@ -15,8 +15,8 @@ protected
 def control_active_user
   #Control if the current user is active in user table
     if user_session != nil && params[:user] != nil
-      @control = User.where(:email => params[:user][:email]).first.active
-      if @control == false
+     @control = User.find_by(:id => params[:id])
+      if @control =! true
         redirect_to destroy_user_session_path, methode: :get
       end
     end

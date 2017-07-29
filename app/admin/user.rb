@@ -1,5 +1,5 @@
 ActiveAdmin.register User do
-
+  skip_before_action :control_active_user
 
   permit_params :email, :admin, :name, :firstname, :active
 
@@ -29,9 +29,10 @@ ActiveAdmin.register User do
       input :id, input_html: { disabled: true }
       input :name
       input :firstname
-      input :email, input_html: { disabled: true }
+      input :email
       input :active
       input :admin
+
 
     end
 
