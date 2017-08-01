@@ -1,9 +1,14 @@
 <h1>Edit Flow n° <%=@flow.code%></h1>
 
 
-<%= simple_form_for @flow, url:  compagny_account_flow_path(params[:compagny_id].to_i, @flow) do |f| %>
+<div class="row">
+        <div class="col-sm-6">
+          <section class="panel">
+            <div class="panel-body">
 
-  <%= f.input :level, collection: @levels, include_blank: false%>
+<%= simple_form_for @flow,  url:  compagny_account_flow_path(params[:compagny_id].to_i, @flow) do |f| %>
+
+  <%= f.input :level, collection: @levels, :selected =>  @flow.level.id, include_blank: false%>
 
   <%= f.input :name, label: 'Title' %>
   <%= f.input :description %>
@@ -14,6 +19,8 @@
     <%link_to "back", compagny_account_flows_path(params[:compagny_id].to_i, @flow) %>
   <% end %>
 <% end %>
-
+          </div>
+        </section>
+      </div>
 <br>
 <br>

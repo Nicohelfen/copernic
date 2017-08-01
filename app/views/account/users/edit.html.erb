@@ -1,0 +1,20 @@
+<h1> <%=@user.name%> <%=@user.firstname%> </h1>
+
+
+
+
+<%= simple_form_for @user, url:  compagny_account_user_path(params[:compagny_id].to_i, @user) do |f| %>
+
+  <%= f.input :name, label: 'Name' %>
+  <%= f.input :firstname %>
+  <%= f.input :email %>
+  <%= f.input :active %>
+  <%= f.input :manager %>
+  <%= f.button :submit %>
+  <%= f.button :button do %>
+    <%link_to "back", compagny_account_users_path(params[:compagny_id] ) %>
+  <% end %>
+<% end %>
+
+<br>
+<br>

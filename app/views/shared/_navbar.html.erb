@@ -1,7 +1,5 @@
 <%select_compagny_user%>
 
-
-
   <nav class="navbar navbar-default">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -52,6 +50,10 @@
         <%if user_signed_in? %>
           <%if @choisecompagny != nil %>
 
+
+          <% if current_user.admin %>
+
+
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Contacts <span class="caret"></span></a>
               <ul class="dropdown-menu">
@@ -63,6 +65,8 @@
                   <% end %>
               </ul>
             </li>
+
+          <%end%>
 
 
 
@@ -86,7 +90,13 @@
              <li><%= link_to edit_user_registration_path  do %>
                  <%= t ".sign_out", default: "Preference" %>
               <% end %>
-            <li><a href="#">Another action</a></li>
+              <% if current_user.manager %>
+
+                <li><%= link_to compagny_account_users_path(params[:compagny_id])  do %>
+                   <%= t ".sign_out", default: "Users" %>
+                <% end %>
+              <% end %>
+
             <li><a href="#">Something else here</a></li>
             <li role="separator" class="divider"></li>
             <li><%= link_to destroy_user_session_path, method: :get do %>

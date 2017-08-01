@@ -1,7 +1,7 @@
 ActiveAdmin.register User do
   skip_before_action :control_active_user
 
-  permit_params :email, :admin, :name, :firstname, :active
+  permit_params :email, :admin, :name, :firstname, :active, :manager
 
   sidebar "User permit" do
     ul do
@@ -19,6 +19,7 @@ ActiveAdmin.register User do
       column :email
       column :active
       column :admin
+      column :manager
       actions
   end
 
@@ -32,6 +33,7 @@ ActiveAdmin.register User do
       input :email
       input :active
       input :admin
+      input :manager
 
 
     end
