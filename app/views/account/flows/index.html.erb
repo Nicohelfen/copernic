@@ -1,4 +1,4 @@
-<h1><%= @flows.count %> Flows</h1>
+<h1><%= @flows.count %> <%= Compagny.find(params[:compagny_id]).name.upcase %> Flows</h1>
    <div class="panel-body">
     <p id="circle-buttons" class="doc-buttons">
     <i> <%= link_to new_compagny_account_flow_path(), :class=> 'btn btn-white btn-circle' do %>
@@ -7,11 +7,18 @@
     </p>
     </div>
 
-  <div class="table-responsive">
+
+<div class="row">
+        <div class="col-sm-12">
+          <section class="panel">
+            <div class="panel-body">
+
+
+  <div class="table-responsive ">
     <table class="table table-striped b-t text-small">
     <thead>
       <tr>
-        <th width="20"><input type="checkbox"></th>
+
         <th class="th-sortable" data-toggle="class">Code
           <span class="th-sort">
             <i class="fa fa-sort-down text"></i>
@@ -58,10 +65,11 @@
     <tbody>
       <tr>
         <% @flows.each do |flow| %>
-          <td><input type="checkbox" name="post[]" value="2"></td>
-            <% if flow.id != nil  %>
+
+            <% if flow.code != nil  %>
               <td> <%= link_to compagny_account_flow_path(params[:compagny_id], flow) do %>
-                <%= flow.id %></td>
+                <%= flow.code %></td>
+
               <% end %>
             <% else %>
               <td></td>
@@ -102,12 +110,17 @@
            <td> <%= link_to edit_compagny_account_flow_path(params[:compagny_id], flow) do  %>
               <i type="button" class= "fa fa-pencil fa-lg"> </i>
               <% end %></td>
-            </tr>
+      </tr>
           <%end%>
-    </tbody>
-    </table>
+    </div>
+  </section>
     </div>
   </div>
 
+    </tbody>
+    </table>
+
+    </div>
+  </div>
 
 

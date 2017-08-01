@@ -12,6 +12,7 @@ Rails.application.routes.draw do
           resources :persons, only: [:index, :show, :create, :edit, :update ]
         end
         resources :persons, only: [:index]
+        resources :users, only: [:index, :new, :create, :edit, :update]
       end
     end
 
